@@ -24,7 +24,7 @@ import Settings from './pages/Admin/AdminSettings';
 
 // support tab
 import SupportOffersPage from './pages/Support/supportoffers';
-import RequestLibrary from './pages/Support/requestlibrary';
+// import RequestLibrary from './pages/Support/requestlibrary';
 
 const queryClient = new QueryClient();
 
@@ -56,7 +56,7 @@ const App = () => (
                   <Route path="/admin/analytics" element={<Analytics />} />
                   <Route path="/admin/adminsettings" element={<Settings />} />
                   <Route path="/support/offers" element={<SupportOffersPage />} />
-                  <Route path="/support/request-library" element={<RequestLibrary />} />
+                  {/* <Route path="/support/request-library" element={<RequestLibrary />} /> */}
                 </Route>
               </Route>
               
