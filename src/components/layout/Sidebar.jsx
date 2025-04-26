@@ -57,10 +57,10 @@ const Sidebar = () => {
         { icon: MessageSquare, text: 'Messages', to: '/messages' }
       ],
       admin: [
-        { icon: ShieldCheck, text: 'Moderation', to: '/moderation' },
-        { icon: Users, text: 'Users', to: '/users' },
-        { icon: BarChart, text: 'Analytics', to: '/analytics' },
-        { icon: Settings, text: 'Settings', to: '/settings' }
+        { icon: ShieldCheck, text: 'Moderation', to: '/admin/moderation' },
+        { icon: Users, text: 'Users', to: '/admin/adminusers' },
+        { icon: BarChart, text: 'Analytics', to: '/admin/analytics' },
+        { icon: Settings, text: 'Settings', to: '/admin/adminsettings' }
       ]
     };
 

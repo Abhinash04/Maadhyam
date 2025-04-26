@@ -16,6 +16,12 @@ import RequestList from './pages/Requests/RequestList';
 import MessagingCenter from './pages/Messages/MessagingCenter';
 import NotFound from './pages/NotFound';
 
+// Import your admin components
+import Moderation from './pages/Admin/Moderation';
+import Users from './pages/Admin/AdminUsers';
+import Analytics from './pages/Admin/Analytics';
+import Settings from './pages/Admin/AdminSettings';
+
 const queryClient = new QueryClient();
 
 const App = () => (
@@ -41,6 +47,10 @@ const App = () => (
                   
                   {/* Shared routes */}
                   <Route path="/messages" element={<MessagingCenter />} />
+                  <Route path="/admin/moderation" element={<Moderation />} />
+                  <Route path="/admin/adminusers" element={<Users />} />
+                  <Route path="/admin/analytics" element={<Analytics />} />
+                  <Route path="/admin/adminsettings" element={<Settings />} />
                 </Route>
               </Route>
               
