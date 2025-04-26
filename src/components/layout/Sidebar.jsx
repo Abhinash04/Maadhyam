@@ -53,7 +53,7 @@ const Sidebar = () => {
         { icon: MessageSquare, text: 'Messages', to: '/messages' }
       ],
       supporter: [
-        { icon: Gift, text: 'Support Offers', to: '/support-offers' },
+        { icon: Gift, text: 'Support Offers', to: '/support/offers' },
         { icon: MessageSquare, text: 'Messages', to: '/messages' }
       ],
       admin: [
