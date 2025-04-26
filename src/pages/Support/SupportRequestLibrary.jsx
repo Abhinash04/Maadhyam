@@ -123,7 +123,7 @@ import {
     }
   ];
   
-  const RequestLibrary = () => {
+  const SupportRequestLibrary = () => {
     const { toast } = useToast();
     const [requestItems, setRequestItems] = useState(requests);
     const [searchTerm, setSearchTerm] = useState('');
@@ -292,4 +292,4 @@ import {
     );
   };
   
-  export default RequestLibrary;
+  export default SupportRequestLibrary;
