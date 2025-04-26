@@ -56,7 +56,7 @@ const App = () => (
                   <Route path="/admin/analytics" element={<Analytics />} />
                   <Route path="/admin/adminsettings" element={<Settings />} />
                   <Route path="/support/offers" element={<SupportOffersPage />} />
-                  <Route path="/support/request-library" element={<RequestLibrary />}/>
+                  <Route path="/support/request-library" element={<RequestLibrary />} />
                 </Route>
               </Route>
               
