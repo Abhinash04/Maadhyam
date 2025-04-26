@@ -341,9 +341,11 @@ const SupporterDashboard = () => {
                 Browse the request library to find people who need items or services you can provide.
               </p>
             </div>
-            <Button asChild className="bg-maadhyam-purple hover:bg-maadhyam-purple-dark whitespace-nowrap">
-              <Link to="/request-library">Browse Requests</Link>
-            </Button>
+            <Link to="/support/request-library">
+              <Button className="bg-maadhyam-purple hover:bg-maadhyam-purple-dark whitespace-nowrap">
+                  Browse Requests
+              </Button>
+            </Link>
           </div>
         </div>
       </div>
