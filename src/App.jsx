@@ -8,13 +8,13 @@ import { NotificationProvider } from './contexts/NotificationContext';
 import MainLayout from './components/layout/MainLayout';
 import ProtectedRoute from './components/ProtectedRoute';
 
+import NotFound from './pages/NotFound';
 import Login from './pages/Auth/Login';
 import Register from './pages/Auth/Register';
 import Dashboard from './pages/Dashboard';
 import CreateRequest from './pages/Requests/CreateRequest';
 import RequestList from './pages/Requests/RequestList';
 import MessagingCenter from './pages/Messages/MessagingCenter';
-import NotFound from './pages/NotFound';
 
 // Admin tabs
 import Moderation from './pages/Admin/Moderation';
