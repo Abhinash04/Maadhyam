@@ -73,6 +73,12 @@ const RequestList = () => {
     });
   };
 
+    // Categories
+    const categories = [
+      'Poverty & Hunger', 'Education', 'Health & Medical', 'Environment & Animals',
+      'Disaster Relief', 'Children & Youth', 'Elderly Care', 'Volunteering', 'Explore Clubs'
+    ];
+
   // Filter the requests based on search, category, and status filters
   const filterRequests = (requests) => {
     return requests.filter(request => {
@@ -135,14 +141,13 @@ const RequestList = () => {
               <SelectValue placeholder="Category" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="all">All Categories</SelectItem>
-              <SelectItem value="moving">Moving</SelectItem>
-              <SelectItem value="shopping">Shopping</SelectItem>
-              <SelectItem value="technical">Technical</SelectItem>
-              <SelectItem value="repair">Home Repair</SelectItem>
-              <SelectItem value="education">Education</SelectItem>
-              <SelectItem value="other">Other</SelectItem>
-            </SelectContent>
+                <SelectContent>
+                  <SelectItem value="all">All Categories</SelectItem>
+                  {categories.map(category => (
+                    <SelectItem key={category} value={category}>{category}</SelectItem>
+                  ))}
+                </SelectContent>
+              </SelectContent>
           </Select>
 
           <Select value={statusFilter} onValueChange={setStatusFilter}>
