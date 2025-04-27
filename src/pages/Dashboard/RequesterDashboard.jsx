@@ -3,45 +3,84 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../..
 import { Button } from '../../components/ui/button';
 import { Badge } from '../../components/ui/badge';
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useContext, useEffect } from 'react';
+import { useRequests } from '../Requests/RequestsContext';
 
-// Mock data
-const recentRequests = [
-  {
-    id: '1',
-    title: 'Need help moving furniture',
-    category: 'Moving',
-    status: 'pending',
-    createdAt: '2023-04-22T10:30:00Z',
-    urgency: 'medium'
-  },
-  {
-    id: '2',
-    title: 'Grocery shopping assistance',
-    category: 'Shopping',
-    status: 'approved',
-    createdAt: '2023-04-20T15:45:00Z',
-    urgency: 'low'
-  },
-  {
-    id: '3',
-    title: 'Help with computer setup',
-    category: 'Technical',
-    status: 'matched',
-    createdAt: '2023-04-19T09:15:00Z',
-    urgency: 'high'
-  },
-  {
-    id: '4',
-    title: 'Plumbing issue in bathroom',
-    category: 'Home Repair',
-    status: 'rejected',
-    createdAt: '2023-04-18T14:20:00Z',
-    urgency: 'high'
-  }
-];
+
 
 const RequesterDashboard = () => {
+  const { requests } = useRequests();
+
+  // Mock data
+  // const recentRequests = [
+  //   {
+  //     id: '1',
+  //     title: 'Need help moving furniture',
+  //     category: 'Moving',
+  //     status: 'pending',
+  //     createdAt: '2023-04-22T10:30:00Z',
+  //     urgency: 'medium'
+  //   },
+  //   {
+  //     id: '2',
+  //     title: 'Grocery shopping assistance',
+  //     category: 'Shopping',
+  //     status: 'approved',
+  //     createdAt: '2023-04-20T15:45:00Z',
+  //     urgency: 'low'
+  //   },
+  //   {
+  //     id: '3',
+  //     title: 'Help with computer setup',
+  //     category: 'Technical',
+  //     status: 'matched',
+  //     createdAt: '2023-04-19T09:15:00Z',
+  //     urgency: 'high'
+  //   },
+  //   {
+  //     id: '4',
+  //     title: 'Plumbing issue in bathroom',
+  //     category: 'Home Repair',
+  //     status: 'rejected',
+  //     createdAt: '2023-04-18T14:20:00Z',
+  //     urgency: 'high'
+  //   }
+  // ];
+
+  const [recentRequests, setRecentRequests] = useState([]);
+
+  useEffect(() => {
+    const categoryNames = {
+      poverty_and_hunger: 'Poverty and Hunger',
+      education: 'Education',
+      health_and_medical: 'Health and Medical',
+      environment_and_animal: 'Environment and Animal',
+      disaster_relief: 'Disaster Relief',
+      children_and_youth: 'Children and Youth',
+      elderly_care: 'Elderly Care',
+      volunteering: 'Volunteering',
+      hosting: 'Hosting',
+      exploring_clubs_and_activities: 'Exploring Clubs and Activities',
+    };
+
+    console.log(requests); // Log to check the requests
+    const mappedRequests = requests.map(request => {
+      console.log(request.category); // Log category for debugging
+      return {
+        id: request.id,
+        title: request.name,
+        category: categoryNames[request.category] ? categoryNames[request.category] : request.category || 'Unknown', // Map category
+        status: request.status,
+        createdAt: request.createdAt,
+        urgency: request.urgency,
+      };
+    });
+
+    setRecentRequests(mappedRequests); // Update state with the transformed data
+  }, [requests]);
+  
+
+
   const [searchTerm, setSearchTerm] = useState('');
   const [filter, setFilter] = useState('all');
 
@@ -62,10 +101,12 @@ const RequesterDashboard = () => {
 
   const getUrgencyBadge = (urgency) => {
     switch (urgency) {
-      case 'low':
-        return <Badge className="bg-blue-500">Low</Badge>;
+      case 'open':
+        return <Badge className="bg-blue-500">Open</Badge>;
       case 'medium':
         return <Badge className="bg-yellow-500">Medium</Badge>;
+      case 'urgent':
+        return <Badge className="bg-red-600">Urgent</Badge>;
       case 'high':
         return <Badge className="bg-red-500">High</Badge>;
       default:
@@ -85,10 +126,10 @@ const RequesterDashboard = () => {
     if (!searchTerm && filter === 'all') return requests;
 
     return requests.filter(request => {
-      const matchesSearch = searchTerm ? 
+      const matchesSearch = searchTerm ?
         request.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
         request.category.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        request.status.toLowerCase().includes(searchTerm.toLowerCase()) : 
+        request.status.toLowerCase().includes(searchTerm.toLowerCase()) :
         true;
 
       const matchesFilter = filter === 'all' || request.status === filter;
@@ -135,11 +176,12 @@ const RequesterDashboard = () => {
             <FileText className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">12</div>
+            <div className="text-2xl font-bold">{recentRequests.length}</div>
             <p className="text-xs text-muted-foreground">
               +2 from last month
             </p>
           </CardContent>
+
         </Card>
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
@@ -147,11 +189,14 @@ const RequesterDashboard = () => {
             <Clock className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">3</div>
+            <div className="text-2xl font-bold">
+              {recentRequests.filter(req => req.status === 'pending').length}
+            </div>
             <p className="text-xs text-muted-foreground">
               Awaiting review or match
             </p>
           </CardContent>
+
         </Card>
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
@@ -159,11 +204,18 @@ const RequesterDashboard = () => {
             <CheckCircle className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">8</div>
+            <div className="text-2xl font-bold">
+              {
+                recentRequests.filter(req =>
+                  ['matched', 'approved'].includes(req.status)
+                ).length
+              }
+            </div>
             <p className="text-xs text-muted-foreground">
               +3 from last month
             </p>
           </CardContent>
+
         </Card>
       </div>
 

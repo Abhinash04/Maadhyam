@@ -6,34 +6,35 @@ import { Link } from 'react-router-dom';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../../components/ui/tabs';
 import { LineChart, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend } from 'recharts';
 import { useState } from 'react';
+import { useRequests } from '../Requests/RequestsContext';
 
 // Mock data
-const pendingRequests = [
-  {
-    id: '1',
-    title: 'Need help moving furniture',
-    category: 'Moving',
-    submittedBy: 'John D.',
-    createdAt: '2023-04-22T10:30:00Z',
-    urgency: 'medium'
-  },
-  {
-    id: '2',
-    title: 'Grocery shopping assistance',
-    category: 'Shopping',
-    submittedBy: 'Sarah M.',
-    createdAt: '2023-04-20T15:45:00Z',
-    urgency: 'low'
-  },
-  {
-    id: '3',
-    title: 'Help with computer setup',
-    category: 'Technical',
-    submittedBy: 'Alex T.',
-    createdAt: '2023-04-19T09:15:00Z',
-    urgency: 'high'
-  },
-];
+// const pendingRequests = [
+//   {
+//     id: '1',
+//     title: 'Need help moving furniture',
+//     category: 'Moving',
+//     submittedBy: 'John D.',
+//     createdAt: '2023-04-22T10:30:00Z',
+//     urgency: 'medium'
+//   },
+//   {
+//     id: '2',
+//     title: 'Grocery shopping assistance',
+//     category: 'Shopping',
+//     submittedBy: 'Sarah M.',
+//     createdAt: '2023-04-20T15:45:00Z',
+//     urgency: 'low'
+//   },
+//   {
+//     id: '3',
+//     title: 'Help with computer setup',
+//     category: 'Technical',
+//     submittedBy: 'Alex T.',
+//     createdAt: '2023-04-19T09:15:00Z',
+//     urgency: 'high'
+//   },
+// ];
 
 const flaggedContent = [
   {
@@ -83,26 +84,45 @@ const weeklyActivity = [
 ];
 
 const categoryData = [
-  { name: 'Moving', count: 35 },
-  { name: 'Shopping', count: 28 },
-  { name: 'Technical', count: 22 },
-  { name: 'Home Repair', count: 18 },
-  { name: 'Education', count: 15 },
-  { name: 'Other', count: 12 },
+  { name: 'Poverty and Hunger', value: 35 },
+  { name: 'Education', value: 28 },
+  { name: 'Health and Medical', value: 22 },
+  { name: 'Environment and Animal', value: 18 },
+  { name: 'Disaster Relief', value: 15 },
+  { name: 'Children and Youth', value: 12 },
+  { name: 'Elderly Care', value: 10 },
+  { name: 'Volunteering', value: 8 },
+  { name: 'Hosting', value: 6 },
+  { name: 'Exploring Clubs and Activities', value: 4 }
 ];
 
 const AdminDashboard = () => {
+  const { requests } = useRequests();
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedTab, setSelectedTab] = useState('pending');
 
+  const pendingRequests = requests.filter(request => request.status === 'pending').map(req => ({
+    id: req.id,  // Change 'datum' to 'req'
+    title: req.name,  // Same here, replace 'datum' with 'req'
+    category: req.category,
+    status: req.status,
+    createdAt: "2023-04-18T14:20:00Z",  // Make sure you have the correct date format
+    urgency: req.urgency,
+    submittedBy: req.submittedBy,  // Assuming this is a fixed value
+  }));
+  
+  
+
   const getUrgencyBadge = (urgency) => {
     switch (urgency) {
-      case 'low':
-        return <Badge className="bg-blue-500">Low</Badge>;
+      case 'open':
+        return <Badge className="bg-blue-500">Open</Badge>;
       case 'medium':
         return <Badge className="bg-yellow-500">Medium</Badge>;
       case 'high':
         return <Badge className="bg-red-500">High</Badge>;
+      case 'urgent':
+        return <Badge className="bg-red-600">Urgent</Badge>;
       default:
         return <Badge>Unknown</Badge>;
     }

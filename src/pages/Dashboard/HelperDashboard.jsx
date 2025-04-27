@@ -8,70 +8,103 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '.
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../../components/ui/tabs';
 import { useState } from 'react';
 
-// Mock data
-const nearbyRequests = [
-  {
-    id: '1',
-    title: 'Need help moving furniture',
-    category: 'Moving',
-    location: 'Downtown',
-    distance: '1.2 miles',
-    createdAt: '2023-04-22T10:30:00Z',
-    urgency: 'medium'
-  },
-  {
-    id: '2',
-    title: 'Grocery shopping assistance',
-    category: 'Shopping',
-    location: 'Westside',
-    distance: '0.8 miles',
-    createdAt: '2023-04-20T15:45:00Z',
-    urgency: 'low'
-  },
-  {
-    id: '3',
-    title: 'Help with computer setup',
-    category: 'Technical',
-    location: 'Northside',
-    distance: '2.5 miles',
-    createdAt: '2023-04-19T09:15:00Z',
-    urgency: 'high'
-  },
-  {
-    id: '4',
-    title: 'Plumbing issue in bathroom',
-    category: 'Home Repair',
-    location: 'Eastside',
-    distance: '1.8 miles',
-    createdAt: '2023-04-18T14:20:00Z',
-    urgency: 'high'
-  }
-];
 
-const acceptedRequests = [
-  {
-    id: '5',
-    title: 'Help with gardening',
-    category: 'Gardening',
-    location: 'Suburbs',
-    requesterName: 'Maria Lopez',
-    createdAt: '2023-04-15T11:20:00Z',
-    status: 'in_progress',
-    urgency: 'medium'
-  },
-  {
-    id: '6',
-    title: 'Moving boxes to storage',
-    category: 'Moving',
-    location: 'Downtown',
-    requesterName: 'John Smith',
-    createdAt: '2023-04-10T09:45:00Z',
-    status: 'scheduled',
-    urgency: 'low'
-  }
-];
+
 
 const HelperDashboard = () => {
+
+  const nearbyRequests = [
+    {
+      id: 'poverty-001',
+      title: 'Meals of Hope',
+      category: 'Poverty and Hunger',
+      location: 'Downtown',
+      distance: '1.5 miles',
+      createdAt: '2023-04-18T14:20:00Z',
+      urgency: 'high'
+    },
+    {
+      id: 'education-002',
+      title: 'Tech for Tomorrow',
+      category: 'Education',
+      location: 'Eastside',
+      distance: '2.1 miles',
+      createdAt: '2023-04-20T09:35:00Z',
+      urgency: 'medium'
+    },
+    {
+      id: 'medical-002',
+      title: 'Blood Drive Lifeline',
+      category: 'Health and Medical',
+      location: 'Westside',
+      distance: '1.8 miles',
+      createdAt: '2023-04-15T11:00:00Z',
+      urgency: 'urgent'
+    },
+    {
+      id: 'environment-006',
+      title: 'Pollution Patrol',
+      category: 'Environment and Animal',
+      location: 'South Park',
+      distance: '2.3 miles',
+      createdAt: '2023-04-10T16:45:00Z',
+      urgency: 'medium'
+    }
+  ];
+
+
+  // Mock data
+  const acceptedRequests = [
+    {
+      id: 'disaster-002',
+      title: 'Flood Relief Force',
+      category: 'Disaster Relief',
+      location: 'Relief Warehouse',
+      requesterName: 'Eliza W.',
+      createdAt: '2023-04-14T08:10:00Z',
+      status: 'in_progress',
+      urgency: 'urgent'
+    },
+    {
+      id: 'youth-001',
+      title: 'Dream Builders',
+      category: 'Children and Youth',
+      location: 'Youth Resource Center',
+      requesterName: 'Sophia B.',
+      createdAt: '2023-04-13T13:30:00Z',
+      status: 'scheduled',
+      urgency: 'medium'
+    },
+    {
+      id: 'elderly-001',
+      title: 'Golden Years Support',
+      category: 'Elderly Care',
+      location: 'Elderly Care Home',
+      requesterName: 'Noah F.',
+      createdAt: '2023-04-12T12:00:00Z',
+      status: 'completed',
+      urgency: 'medium'
+    },
+    {
+      id: 'volunteer-001',
+      title: 'Hearts in Action',
+      category: 'Volunteering',
+      location: 'Volunteer Office',
+      requesterName: 'Avery J.',
+      createdAt: '2023-04-16T17:50:00Z',
+      status: 'scheduled',
+      urgency: 'open'
+    }
+  ];
+
+  // Categories
+  const categories = [
+    'Poverty & Hunger', 'Education', 'Health & Medical', 'Environment & Animals',
+    'Disaster Relief', 'Children & Youth', 'Elderly Care', 'Volunteering', 'Explore Clubs'
+  ];
+
+
+
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedRole, setSelectedRole] = useState('all');
 
@@ -109,9 +142,9 @@ const HelperDashboard = () => {
 
   const filterContent = (content, searchTerm, role) => {
     if (!searchTerm && role === 'all') return content;
-    return content.filter(item => 
+    return content.filter(item =>
       (role === 'all' || item.category.toLowerCase() === role) &&
-      (searchTerm ? Object.values(item).some(value => 
+      (searchTerm ? Object.values(item).some(value =>
         value != null && value.toString().toLowerCase().includes(searchTerm.toLowerCase())
       ) : true)
     );
@@ -188,17 +221,17 @@ const HelperDashboard = () => {
                 <SelectValue placeholder="Category" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="all">All Categories</SelectItem>
-                <SelectItem value="moving">Moving</SelectItem>
-                <SelectItem value="shopping">Shopping</SelectItem>
-                <SelectItem value="technical">Technical</SelectItem>
-                <SelectItem value="repair">Home Repair</SelectItem>
-                <SelectItem value="gardening">Gardening</SelectItem>
+                <SelectContent>
+                  <SelectItem value="all">All Categories</SelectItem>
+                  {categories.map(category => (
+                    <SelectItem key={category} value={category}>{category}</SelectItem>
+                  ))}
+                </SelectContent>
               </SelectContent>
             </Select>
           </div>
         </div>
-        
+
         <TabsContent value="nearby">
           <Card>
             <CardHeader>

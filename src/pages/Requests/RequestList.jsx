@@ -1,67 +1,36 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '../../components/ui/button';
 import { Input } from '../../components/ui/input';
 import { Badge } from '../../components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../../components/ui/tabs';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../../components/ui/select';
-import { FileText, Plus, Search, Filter } from 'lucide-react';
-
-// Mock data
-const activeRequests = [
-  {
-    id: '1',
-    title: 'Need help moving furniture',
-    category: 'Moving',
-    status: 'pending',
-    createdAt: '2023-04-22T10:30:00Z',
-    urgency: 'medium'
-  },
-  {
-    id: '2',
-    title: 'Grocery shopping assistance',
-    category: 'Shopping',
-    status: 'approved',
-    createdAt: '2023-04-20T15:45:00Z',
-    urgency: 'low'
-  },
-  {
-    id: '3',
-    title: 'Help with computer setup',
-    category: 'Technical',
-    status: 'matched',
-    createdAt: '2023-04-19T09:15:00Z',
-    urgency: 'high'
-  },
-];
-
-const pastRequests = [
-  {
-    id: '4',
-    title: 'Plumbing issue in bathroom',
-    category: 'Home Repair',
-    status: 'completed',
-    createdAt: '2023-04-10T14:20:00Z',
-    completedAt: '2023-04-12T16:45:00Z',
-    urgency: 'high'
-  },
-  {
-    id: '5',
-    title: 'Help with painting bedroom',
-    category: 'Home Repair',
-    status: 'cancelled',
-    createdAt: '2023-04-05T11:30:00Z',
-    completedAt: '2023-04-05T18:10:00Z',
-    urgency: 'low'
-  },
-];
+import { FileText, Plus, Search } from 'lucide-react';
+import { useRequests } from '../Requests/RequestsContext';
 
 const RequestList = () => {
+  const { requests } = useRequests();
+
   const [searchQuery, setSearchQuery] = useState('');
   const [categoryFilter, setCategoryFilter] = useState('all');
   const [statusFilter, setStatusFilter] = useState('all');
   const [activeTab, setActiveTab] = useState('active');
+  const [recentRequests, setRecentRequests] = useState([]); // State for filtered and mapped requests
 
+  const categoryNames = {
+    poverty_and_hunger: 'Poverty and Hunger',
+    education: 'Education',
+    health_and_medical: 'Health and Medical',
+    environment_and_animal: 'Environment and Animal',
+    disaster_relief: 'Disaster Relief',
+    children_and_youth: 'Children and Youth',
+    elderly_care: 'Elderly Care',
+    volunteering: 'Volunteering',
+    hosting: 'Hosting',
+    exploring_clubs_and_activities: 'Exploring Clubs and Activities',
+  };
+
+  // Function to determine the status badge
   const getStatusBadge = (status) => {
     switch (status) {
       case 'pending':
@@ -81,6 +50,7 @@ const RequestList = () => {
     }
   };
 
+  // Function to determine the urgency badge
   const getUrgencyBadge = (urgency) => {
     switch (urgency) {
       case 'low':
@@ -94,23 +64,43 @@ const RequestList = () => {
     }
   };
 
+  // Function to format the date
   const formatDate = (dateStr) => {
     return new Date(dateStr).toLocaleDateString('en-US', {
       month: 'short',
       day: 'numeric',
-      year: 'numeric'
+      year: 'numeric',
     });
   };
 
+  // Filter the requests based on search, category, and status filters
   const filterRequests = (requests) => {
     return requests.filter(request => {
-      const matchesSearch = request.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                            request.category.toLowerCase().includes(searchQuery.toLowerCase());
-      const matchesCategory = categoryFilter === 'all' || request.category.toLowerCase() === categoryFilter;
+      const title = request.title ? request.title.toLowerCase() : '';
+      const category = categoryNames[request.category] ? categoryNames[request.category] : request.category || 'Unknown';
+      const matchesSearch = title.includes(searchQuery.toLowerCase()) ||
+                            category.includes(searchQuery.toLowerCase());
+      const matchesCategory = categoryFilter === 'all' || category === categoryFilter;
       const matchesStatus = statusFilter === 'all' || request.status === statusFilter;
       return matchesSearch && matchesCategory && matchesStatus;
     });
   };
+
+  useEffect(() => {
+    // Every time `requests` changes, run this effect
+    const recentRequests = requests.map(request => {
+      const category = categoryNames[request.category] ? categoryNames[request.category] : request.category || 'Unknown';
+      return {
+        ...request,
+        category,
+      };
+    });
+    setRecentRequests(recentRequests);
+  }, [requests]); // Re-run when `requests` changes
+
+  // Separate active and past requests based on their status
+  const activeRequests = recentRequests.filter(request => ['pending', 'approved', 'matched'].includes(request.status));
+  const pastRequests = recentRequests.filter(request => ['completed', 'cancelled', 'rejected'].includes(request.status));
 
   return (
     <div className="space-y-6">
@@ -185,7 +175,7 @@ const RequestList = () => {
                 <div key={request.id} className="flex items-center justify-between p-4 border rounded-lg card-hover">
                   <div className="space-y-1">
                     <div className="flex items-center space-x-2">
-                      <h4 className="font-medium">{request.title}</h4>
+                      <h4 className="font-medium">{request.name}</h4>
                       {getUrgencyBadge(request.urgency)}
                     </div>
                     <div className="flex items-center space-x-2 text-sm text-muted-foreground">

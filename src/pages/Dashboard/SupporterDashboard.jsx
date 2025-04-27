@@ -11,59 +11,93 @@ import { useToast } from '../../components/ui/use-toast';
 const supportOffers = [
   {
     id: '1',
-    title: 'Gently used winter coats',
+    title: 'Pre-loved children’s clothes',
     category: 'Clothing',
-    quantity: 5,
-    condition: 'Good',
-    createdAt: '2023-04-22T10:30:00Z',
-    matches: 2
+    quantity: 10,
+    condition: 'Excellent',
+    createdAt: '2023-04-25T08:30:00Z',
+    matches: 3
   },
   {
     id: '2',
-    title: 'Basic groceries package',
+    title: 'Fresh fruit basket',
     category: 'Food',
-    description: 'Non-perishable food items',
-    createdAt: '2023-04-20T15:45:00Z',
-    matches: 0
+    description: 'Assorted fruits including apples, oranges, and bananas',
+    createdAt: '2023-04-23T14:00:00Z',
+    matches: 2
   },
   {
     id: '3',
-    title: 'Free math tutoring',
+    title: 'Free guitar lessons',
     category: 'Education',
-    description: 'One hour sessions',
-    createdAt: '2023-04-19T09:15:00Z',
-    matches: 3
+    description: 'Basic guitar lessons for beginners',
+    createdAt: '2023-04-20T11:15:00Z',
+    matches: 5
+  },
+  {
+    id: '4',
+    title: 'Bicycle for donation',
+    category: 'Transportation',
+    condition: 'Good',
+    createdAt: '2023-04-22T16:50:00Z',
+    matches: 0
+  },
+  {
+    id: '5',
+    title: 'Winter blankets',
+    category: 'Clothing',
+    quantity: 8,
+    condition: 'New',
+    createdAt: '2023-04-19T09:00:00Z',
+    matches: 4
   }
 ];
 
 const requests = [
   {
     id: '1',
-    title: 'Warm winter coats',
+    title: 'Winter jackets for children',
     category: 'Clothing',
-    description: '急需冬季外套',
-    createdAt: '2023-04-21T14:30:00Z',
-    urgency: 'medium'
-  },
-  {
-    id: '2',
-    title: 'Food supplies',
-    category: 'Food',
-    description: 'Basic groceries for a family of four',
-    createdAt: '2023-04-20T10:15:00Z',
+    description: '需要儿童冬季外套，尺码中等',
+    createdAt: '2023-04-24T13:40:00Z',
     urgency: 'high'
   },
   {
+    id: '2',
+    title: 'Groceries for senior citizens',
+    category: 'Food',
+    description: 'Essential grocery items for the elderly',
+    createdAt: '2023-04-22T10:20:00Z',
+    urgency: 'medium'
+  },
+  {
     id: '3',
-    title: 'Math tutoring',
+    title: 'Private tutoring for mathematics',
     category: 'Education',
-    description: 'Help with high school algebra',
-    createdAt: '2023-04-18T09:45:00Z',
+    description: 'I need help with calculus tutoring',
+    createdAt: '2023-04-18T16:30:00Z',
     urgency: 'low'
+  },
+  {
+    id: '4',
+    title: 'Bike for commuting',
+    category: 'Transportation',
+    description: 'Looking for a used bike for work commute',
+    createdAt: '2023-04-21T17:00:00Z',
+    urgency: 'medium'
+  },
+  {
+    id: '5',
+    title: 'Warm blankets for elderly',
+    category: 'Clothing',
+    description: 'Urgently need warm blankets for the elderly in care',
+    createdAt: '2023-04-20T08:10:00Z',
+    urgency: 'high'
   }
 ];
 
-const SupporterDashboard = () => {
+
+const SupporterDashboard = (data) => {
   const { toast } = useToast();
   const [searchTerm, setSearchTerm] = useState('');
   const [filter, setFilter] = useState('all');

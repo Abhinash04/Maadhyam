@@ -14,13 +14,18 @@ const Analytics = () => {
   ];
 
   const requestDistributionData = [
-    { name: 'Moving', value: 35 },
-    { name: 'Shopping', value: 28 },
-    { name: 'Technical', value: 22 },
-    { name: 'Home Repair', value: 18 },
-    { name: 'Education', value: 15 },
-    { name: 'Other', value: 12 }
+    { name: 'Poverty and Hunger', value: 35 },
+    { name: 'Education', value: 28 },
+    { name: 'Health and Medical', value: 22 },
+    { name: 'Environment and Animal', value: 18 },
+    { name: 'Disaster Relief', value: 15 },
+    { name: 'Children and Youth', value: 12 },
+    { name: 'Elderly Care', value: 10 },
+    { name: 'Volunteering', value: 8 },
+    { name: 'Hosting', value: 6 },
+    { name: 'Exploring Clubs and Activities', value: 4 }
   ];
+  
 
   const activityTrendData = [
     { day: 'Mon', requests: 12, matches: 5 },

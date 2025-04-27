@@ -23,7 +23,7 @@ const AdminUsers = () => {
         <p className="text-muted-foreground mt-1">Manage user accounts and verification requests</p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-1 gap-6">
         <Card>
           <CardHeader>
             <CardTitle>User Verification Requests</CardTitle>

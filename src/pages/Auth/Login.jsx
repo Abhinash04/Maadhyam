@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { Button } from '../../components/ui/button';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle, CardDescription } from '../../components/ui/card';
 import { Input } from '../../components/ui/input';
+import { RadioGroup, RadioGroupItem } from '../../components/ui/radio-group';
 import { Label } from '../../components/ui/label';
 import { useAuth } from '../../contexts/AuthContext';
 import { useToast } from '../../hooks/use-toast';
@@ -12,6 +13,7 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const { login } = useAuth();
+  const [role, setRole] = useState('requester');
   const navigate = useNavigate();
   const { toast } = useToast();
 
@@ -85,6 +87,31 @@ const Login = () => {
                   onChange={(e) => setPassword(e.target.value)} 
                   required 
                 />
+              </div>
+              <div className="space-y-2">
+                <Label>I want to join as</Label>
+                <RadioGroup 
+                  defaultValue="requester"
+                  className="grid grid-cols-2 gap-4 pt-2"
+                  onValueChange={(value) => setRole(value)}
+                >
+                  <div className="flex items-center space-x-2">
+                    <RadioGroupItem value="requester" id="requester" />
+                    <Label htmlFor="requester" className="cursor-pointer">Requester</Label>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <RadioGroupItem value="helper" id="helper" />
+                    <Label htmlFor="helper" className="cursor-pointer">Helper</Label>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <RadioGroupItem value="supporter" id="supporter" />
+                    <Label htmlFor="supporter" className="cursor-pointer">Supporter</Label>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <RadioGroupItem value="admin" id="admin" />
+                    <Label htmlFor="admin" className="cursor-pointer">Admin</Label>
+                  </div>
+                </RadioGroup>
               </div>
             </CardContent>
             <CardFooter className="flex flex-col">

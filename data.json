@@ -1,0 +1,272 @@
+[
+    {
+      "id": "poverty-001",
+      "name": "Meals of Hope",
+      "category": "Poverty and Hunger",
+      "status": "pending",
+      "mission": "Providing 500,000 meals to impoverished communities annually",
+      "goal": 60000,
+      "raised": 21000,
+      "urgency": "high",
+      "donation_needs": {
+        "ACCEPTING": [
+          "Non-perishable foods (rice, lentils, pasta)",
+          "Canned vegetables and fruits",
+          "Nutritional bars and supplements"
+        ],
+        "NOT ACCEPTING": [
+          "Expired food",
+          "Opened or damaged packaging"
+        ]
+      },
+      "drop_off": {
+        "address": "Community Food Bank, Bhubaneswar - 751001",
+        "contact": "0674-5432109",
+        "hours": "Mon-Sat, 8 AM - 6 PM"
+      },
+      "submittedBy": "Ales T.",
+      "createdAt": "2023-04-18T14:20:00Z"
+    },
+    {
+      "id": "education-002",
+      "name": "Tech for Tomorrow",
+      "category": "Education",
+      "status": "pending",
+      "mission": "Equipping 1000 students with digital learning tools",
+      "goal": 50000,
+      "raised": 22000,
+      "urgency": "medium",
+      "donation_needs": {
+        "ACCEPTING": [
+          "Tablets (functional, reset)",
+          "Educational software licenses",
+          "Internet dongles (new/activated)"
+        ],
+        "NOT ACCEPTING": [
+          "Broken devices",
+          "Outdated software CDs"
+        ]
+      },
+      "drop_off": {
+        "address": "Digital Learning Center, Bhubaneswar - 751001",
+        "contact": "0674-6789012",
+        "hours": "Mon-Fri, 9 AM - 5 PM"
+      },
+      "submittedBy": "Jenna R.",
+      "createdAt": "2023-04-20T09:35:00Z"
+    },
+    {
+      "id": "medical-002",
+      "name": "Blood Drive Lifeline",
+      "category": "Health and Medical",
+      "status": "pending",
+      "mission": "Collecting 10,000 units of blood for emergency services",
+      "goal": 30000,
+      "raised": 14000,
+      "urgency": "urgent",
+      "donation_needs": {
+        "ACCEPTING": [
+          "Healthy blood donors (18-60 years old)",
+          "Plasma donors",
+          "Platelet donors"
+        ],
+        "NOT ACCEPTING": [
+          "Donors with infectious diseases",
+          "Donors without valid ID proof"
+        ]
+      },
+      "drop_off": {
+        "address": "Red Cross Blood Bank, Bhubaneswar - 751001",
+        "contact": "0674-1112223",
+        "hours": "Everyday, 8 AM - 8 PM"
+      },
+      "submittedBy": "Mason D.",
+      "createdAt": "2023-04-15T11:00:00Z"
+    },
+    {
+      "id": "environment-006",
+      "name": "Pollution Patrol",
+      "category": "Environment and Animal",
+      "status": "pending",
+      "mission": "Removing 50 tons of waste from local parks annually",
+      "goal": 35000,
+      "raised": 17000,
+      "urgency": "medium",
+      "donation_needs": {
+        "ACCEPTING": [
+          "Trash pickers",
+          "Recycling bins",
+          "Reusable water bottles for volunteers"
+        ],
+        "NOT ACCEPTING": [
+          "Single-use plastic items",
+          "Damaged safety gear"
+        ]
+      },
+      "drop_off": {
+        "address": "Eco Warriors Hub, Bhubaneswar - 751001",
+        "contact": "0674-9090909",
+        "hours": "Sun-Fri, 7 AM - 4 PM"
+      },
+      "submittedBy": "Liam P.",
+      "createdAt": "2023-04-10T16:45:00Z"
+    },
+    {
+      "id": "disaster-002",
+      "name": "Flood Relief Force",
+      "category": "Disaster Relief",
+      "status": "pending",
+      "mission": "Delivering emergency kits to 10,000 flood-affected families",
+      "goal": 80000,
+      "raised": 37000,
+      "urgency": "urgent",
+      "donation_needs": {
+        "ACCEPTING": [
+          "Water purifiers",
+          "Ready-to-eat meals",
+          "Raincoats and boots"
+        ],
+        "NOT ACCEPTING": [
+          "Old/damaged clothes",
+          "Used water bottles"
+        ]
+      },
+      "drop_off": {
+        "address": "Relief Warehouse, Bhubaneswar - 751001",
+        "contact": "0674-3334445",
+        "hours": "24/7"
+      },
+      "submittedBy": "Eliza W.",
+      "createdAt": "2023-04-14T08:10:00Z"
+    },
+    {
+      "id": "youth-001",
+      "name": "Dream Builders",
+      "category": "Children and Youth",
+      "status": "pending",
+      "mission": "Mentoring 500 at-risk youths annually",
+      "goal": 45000,
+      "raised": 19000,
+      "urgency": "medium",
+      "donation_needs": {
+        "ACCEPTING": [
+          "Art supplies (colors, brushes, sketchbooks)",
+          "Sports equipment (footballs, badminton sets)",
+          "Mentorship volunteers"
+        ],
+        "NOT ACCEPTING": [
+          "Damaged sports items",
+          "Incomplete art kits"
+        ]
+      },
+      "drop_off": {
+        "address": "Youth Resource Center, Bhubaneswar - 751001",
+        "contact": "0674-5556667",
+        "hours": "Mon-Sat, 10 AM - 5 PM"
+      },
+      "submittedBy": "Sophia B.",
+      "createdAt": "2023-04-13T13:30:00Z"
+    },
+    {
+      "id": "elderly-001",
+      "name": "Golden Years Support",
+      "category": "Elderly Care",
+      "status": "pending",
+      "mission": "Caring for 1000 senior citizens with essentials and companionship",
+      "goal": 40000,
+      "raised": 16000,
+      "urgency": "medium",
+      "donation_needs": {
+        "ACCEPTING": [
+          "Hearing aids (working condition)",
+          "Adult diapers (all sizes)",
+          "Walking sticks and mobility aids"
+        ],
+        "NOT ACCEPTING": [
+          "Used personal hygiene items",
+          "Broken mobility devices"
+        ]
+      },
+      "drop_off": {
+        "address": "Elderly Care Home, Bhubaneswar - 751001",
+        "contact": "0674-7778889",
+        "hours": "Mon-Fri, 9 AM - 5 PM"
+      },
+      "submittedBy": "Noah F.",
+      "createdAt": "2023-04-12T12:00:00Z"
+    },
+    {
+      "id": "volunteer-001",
+      "name": "Hearts in Action",
+      "category": "Volunteering",
+      "status": "pending",
+      "mission": "Mobilizing 10,000 volunteers across Odisha annually",
+      "goal": 20000,
+      "raised": 9000,
+      "urgency": "open",
+      "volunteer_roles": [
+        "Event coordination",
+        "Fundraising support",
+        "On-ground emergency response",
+        "Mentorship and tutoring"
+      ],
+      "drop_off": {
+        "address": "Volunteer Office, Bhubaneswar - 751001",
+        "contact": "0674-6543210",
+        "hours": "Mon-Sat, 9 AM - 6 PM"
+      },
+      "submittedBy": "Avery J.",
+      "createdAt": "2023-04-16T17:50:00Z"
+    },
+    {
+      "id": "hosting-001",
+      "name": "Homes of Hope",
+      "category": "Hosting",
+      "status": "pending",
+      "mission": "Connecting temporary host families with displaced individuals",
+      "goal": 50000,
+      "raised": 21000,
+      "urgency": "high",
+      "hosting_needs": {
+        "ACCEPTING": [
+          "Spare rooms for temporary stays",
+          "Host families for minors",
+          "Short-term emergency accommodations"
+        ],
+        "NOT ACCEPTING": [
+          "Uninspected or unsafe properties"
+        ]
+      },
+      "drop_off": {
+        "address": "Family Services Office, Bhubaneswar - 751001",
+        "contact": "0674-1122334",
+        "hours": "Mon-Fri, 10 AM - 4 PM"
+      },
+      "submittedBy": "Lily H.",
+      "createdAt": "2023-04-17T10:25:00Z"
+    },
+    {
+      "id": "clubs-001",
+      "name": "Creative Minds Collective",
+      "category": "Exploring Clubs and Activities",
+      "status": "pending",
+      "mission": "Offering free access to 100+ creative clubs and sports for youth",
+      "goal": 30000,
+      "raised": 12000,
+      "urgency": "open",
+      "clubs_available": [
+        "Drama and Theater",
+        "Robotics and STEM Club",
+        "Environmental Action Group",
+        "Football and Cricket Coaching"
+      ],
+      "drop_off": {
+        "address": "Community Clubhouse, Bhubaneswar - 751001",
+        "contact": "0674-9998887",
+        "hours": "Mon-Sat, 3 PM - 7 PM"
+      },
+      "submittedBy": "Ethan C.",
+      "createdAt": "2023-04-19T15:40:00Z"
+    }
+  ]
+  

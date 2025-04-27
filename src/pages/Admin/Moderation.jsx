@@ -22,7 +22,7 @@ const Moderation = () => {
         <p className="text-muted-foreground mt-1">Manage flagged content and pending requests</p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-1 gap-6">
         <Card>
           <CardHeader>
             <CardTitle>Flagged Content</CardTitle>

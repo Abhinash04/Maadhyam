@@ -3,6 +3,7 @@ import RequesterDashboard from './RequesterDashboard';
 import HelperDashboard from './HelperDashboard';
 import SupporterDashboard from './SupporterDashboard';
 import AdminDashboard from './AdminDashboard';
+import data from '/data.json';
 
 const Dashboard = () => {
   const { user } = useAuth();
@@ -13,13 +14,13 @@ const Dashboard = () => {
 
     switch (user.role) {
       case 'requester':
-        return <RequesterDashboard />;
+        return <RequesterDashboard data={data} />;
       case 'helper':
-        return <HelperDashboard />;
+        return <HelperDashboard data={data} />;
       case 'supporter':
-        return <SupporterDashboard />;
+        return <SupporterDashboard data={data} />;
       case 'admin':
-        return <AdminDashboard />;
+        return <AdminDashboard data={data} />;
       default:
         return (
           <div className="flex items-center justify-center h-64">
