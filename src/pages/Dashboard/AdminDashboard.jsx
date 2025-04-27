@@ -102,13 +102,13 @@ const AdminDashboard = () => {
   const [selectedTab, setSelectedTab] = useState('pending');
 
   const pendingRequests = requests.filter(request => request.status === 'pending').map(req => ({
-    id: req.id,  // Change 'datum' to 'req'
-    title: req.name,  // Same here, replace 'datum' with 'req'
+    id: req.id,
+    title: req.name,
     category: req.category,
     status: req.status,
-    createdAt: "2023-04-18T14:20:00Z",  // Make sure you have the correct date format
+    createdAt: "2023-04-18T14:20:00Z",
     urgency: req.urgency,
-    submittedBy: req.submittedBy,  // Assuming this is a fixed value
+    submittedBy: req.submittedBy, 
   }));
   
   
