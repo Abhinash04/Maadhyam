@@ -62,7 +62,7 @@ const Login = () => {
       <div className="w-full max-w-md space-y-6">
         <div className="text-center">
           <div className="mx-auto h-12 w-12 rounded-full bg-maadhyam-purple flex items-center justify-center">
-            <span className="text-white font-bold text-xl">M</span>
+            <span className="text-white font-bold text-xl"><img src="/images/logo.png" alt="" className='w-16 rounded-lg' /></span>
           </div>
           <h1 className="mt-4 text-3xl font-bold">Maadhyam</h1>
           <p className="text-muted-foreground">Connect, Help, Support</p>

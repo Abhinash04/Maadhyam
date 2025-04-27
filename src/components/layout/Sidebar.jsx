@@ -80,15 +80,15 @@ const Sidebar = () => {
       <div className="flex h-16 items-center justify-between px-4 border-b border-border">
         {!collapsed && (
           <div className="flex items-center space-x-2">
-            <div className="h-8 w-8 rounded bg-maadhyam-purple flex items-center justify-center">
-              <span className="text-white font-bold">M</span>
+            <div>
+              <img src="/images/logo.png" alt="" className='w-12' />
             </div>
             <span className="font-bold text-xl">Maadhyam</span>
           </div>
         )}
         {collapsed && (
-          <div className="mx-auto h-8 w-8 rounded bg-maadhyam-purple flex items-center justify-center">
-            <span className="text-white font-bold">M</span>
+          <div>
+            <span className="text-white font-bold"><img src="/images/logo.png" alt="" className='w-12' /></span>
           </div>
         )}
         <Button 
