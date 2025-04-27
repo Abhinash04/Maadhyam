@@ -7,6 +7,7 @@ import { Label } from '../../components/ui/label';
 import { RadioGroup, RadioGroupItem } from '../../components/ui/radio-group';
 import { useAuth } from '../../contexts/AuthContext';
 import { useToast } from '../../hooks/use-toast';
+import { adminUsers } from './admins.js';
 
 const Register = () => {
   const [name, setName] = useState('');
@@ -30,7 +31,20 @@ const Register = () => {
       });
       return;
     }
-
+  
+    if (role === 'admin') {
+      // Check if the email is in the list of admin users
+      const isAdmin = adminUsers.some((user) => user.email === email);
+      if (!isAdmin) {
+        toast({
+          title: 'Admin registration error',
+          description: 'You are not authorized to register as an admin.',
+          variant: 'destructive',
+        });
+        return;
+      }
+    }
+  
     setIsLoading(true);
     
     try {
@@ -51,6 +65,7 @@ const Register = () => {
       setIsLoading(false);
     }
   };
+  
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-maadhyam-gray-light p-4 sm:p-6 lg:p-8">

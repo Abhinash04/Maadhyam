@@ -7,6 +7,7 @@ import { RadioGroup, RadioGroupItem } from '../../components/ui/radio-group';
 import { Label } from '../../components/ui/label';
 import { useAuth } from '../../contexts/AuthContext';
 import { useToast } from '../../hooks/use-toast';
+import { adminUsers } from './admins.js';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -20,6 +21,21 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
+    
+    if (role === 'admin') {
+      // Check if the email is in the list of admin users
+      console.log(adminUsers)
+      const isAdmin = adminUsers.some((user) => user.email === email);
+      if (!isAdmin) {
+        toast({
+          title: 'Admin login error',
+          description: 'You are not authorized to log in as an admin.',
+          variant: 'destructive',
+        });
+        setIsLoading(false);
+        return;
+      }
+    }
     
     try {
       await login(email, password, role);
@@ -39,6 +55,7 @@ const Login = () => {
       setIsLoading(false);
     }
   };
+  
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-maadhyam-gray-light p-4 sm:p-6 lg:p-8">

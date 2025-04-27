@@ -1,4 +1,5 @@
 import { createContext, useContext, useState } from 'react';
+import { adminUsers } from '../pages/Auth/admins.js';
 
 const AuthContext = createContext(undefined);
 
@@ -7,19 +8,27 @@ export const AuthProvider = ({ children }) => {
 
   // In a real app, these would connect to a backend
   const login = async (email, password, role) => {
-    // Simulate API call
-    console.log('Logging in with:', email, password, role);
-    
-    // Mock user for demo
+    console.log('Trying login:', email, role);
+    const foundUser = adminUsers.find(user => user.email === email);
+  
+    if (!foundUser) {
+      throw new Error('User not found');
+    }
+  
+    if (foundUser.password !== password) {
+      throw new Error('Incorrect password');
+    }
+  
     setUser({
       id: '1',
-      name: 'John Doe',
-      email: email,
+      name: foundUser.name,
+      email: foundUser.email,
       role: role,
       verified: true,
-      avatarUrl: 'https://api.dicebear.com/7.x/avataaars/svg?seed=John'
+      avatarUrl: `https://api.dicebear.com/7.x/avataaars/svg?seed=${foundUser.name}`,
     });
   };
+  
 
   const register = async (email, password, name, role) => {
     // Simulate API call
