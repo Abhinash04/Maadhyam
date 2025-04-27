@@ -6,16 +6,16 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
 
   // In a real app, these would connect to a backend
-  const login = async (email, password) => {
+  const login = async (email, password, role) => {
     // Simulate API call
-    console.log('Logging in with:', email, password);
+    console.log('Logging in with:', email, password, role);
     
     // Mock user for demo
     setUser({
       id: '1',
       name: 'John Doe',
       email: email,
-      role: 'requester',
+      role: role,
       verified: true,
       avatarUrl: 'https://api.dicebear.com/7.x/avataaars/svg?seed=John'
     });

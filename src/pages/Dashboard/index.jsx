@@ -14,13 +14,13 @@ const Dashboard = () => {
 
     switch (user.role) {
       case 'requester':
-        return <RequesterDashboard data={data} />;
+        return <RequesterDashboard />;
       case 'helper':
-        return <HelperDashboard data={data} />;
+        return <HelperDashboard />;
       case 'supporter':
-        return <SupporterDashboard data={data} />;
+        return <SupporterDashboard />;
       case 'admin':
-        return <AdminDashboard data={data} />;
+        return <AdminDashboard />;
       default:
         return (
           <div className="flex items-center justify-center h-64">
