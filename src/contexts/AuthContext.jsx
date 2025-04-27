@@ -9,26 +9,39 @@ export const AuthProvider = ({ children }) => {
   // In a real app, these would connect to a backend
   const login = async (email, password, role) => {
     console.log('Trying login:', email, role);
-    const foundUser = adminUsers.find(user => user.email === email);
-  
-    if (!foundUser) {
-      throw new Error('User not found');
+
+    if (role === 'admin') {
+      // Strict verification for admins
+      const foundUser = adminUsers.find(user => user.email === email);
+      
+      if (!foundUser) {
+        throw new Error('Admin user not found');
+      }
+      
+      if (foundUser.password !== password) {
+        throw new Error('Incorrect password');
+      }
+      
+      setUser({
+        id: foundUser.id,
+        name: foundUser.name,
+        email: foundUser.email,
+        role: 'admin',
+        verified: true,
+        avatarUrl: `https://api.dicebear.com/7.x/avataaars/svg?seed=${foundUser.name}`,
+      });
+    } else {
+      // Allow any credentials for other roles
+      setUser({
+        id: '1',
+        name: email.split('@')[0], // Use username part of email
+        email: email,
+        role: role,
+        verified: false,
+        avatarUrl: `https://api.dicebear.com/7.x/avataaars/svg?seed=${email.split('@')[0]}`,
+      });
     }
-  
-    if (foundUser.password !== password) {
-      throw new Error('Incorrect password');
-    }
-  
-    setUser({
-      id: '1',
-      name: foundUser.name,
-      email: foundUser.email,
-      role: role,
-      verified: true,
-      avatarUrl: `https://api.dicebear.com/7.x/avataaars/svg?seed=${foundUser.name}`,
-    });
   };
-  
 
   const register = async (email, password, name, role) => {
     // Simulate API call
@@ -41,7 +54,7 @@ export const AuthProvider = ({ children }) => {
       email: email,
       role: role,
       verified: false,
-      avatarUrl: `https://api.dicebear.com/7.x/avataaars/svg?seed=${name}`
+      avatarUrl: `https://api.dicebear.com/7.x/avataaars/svg?seed=${name}`,
     });
   };
 
