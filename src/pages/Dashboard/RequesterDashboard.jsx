@@ -140,14 +140,14 @@ const RequesterDashboard = () => {
 
   return (
     <div className="space-y-6">
-      <div className="flex justify-between items-center">
+      <div className="flex justify-between items-center flex-col sm:flex-row items-center mb-4 gap-2">
         <h1 className="text-3xl font-bold tracking-tight">Requester Dashboard</h1>
         <Button asChild className="bg-maadhyam-purple hover:bg-maadhyam-purple-dark">
           <Link to="/create-request">Create New Request</Link>
         </Button>
       </div>
 
-      <div className="flex items-center mb-4">
+      <div className="flex flex-col sm:flex-row items-center mb-4 gap-2">
         <input
           type="text"
           value={searchTerm}
